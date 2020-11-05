@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyAPI.Core.Models.DTOs;
@@ -18,7 +19,7 @@ namespace MyAPI.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task <ActionResult> PostCategory(CategoryDTO category)
+        public async Task <ActionResult> PostACategory(CategoryDTO category)
         {
             if (category == null)
             {
@@ -32,8 +33,15 @@ namespace MyAPI.WebApi.Controllers
             }
 
             await _service.CreateCategory(category);
+            
             return Ok(category);
 
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<CategoryDTO>>> GetListContainingAllCategories()
+        {
+            return await _service.GetAllCategories();
         }
         
     }

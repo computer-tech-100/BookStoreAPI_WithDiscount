@@ -1,4 +1,7 @@
+using System.Collections.Generic;//List
+using System.Linq;//Select()
 using System.Threading.Tasks;//Task
+using Microsoft.EntityFrameworkCore;
 using MyAPI.Core.Contexts;
 using MyAPI.Core.Models.DbEntities;
 using MyAPI.Core.Models.DTOs;
@@ -24,6 +27,7 @@ namespace MyAPI.Core.Services
                 CategoryName = cateogry.CategoryName
 
             };
+
             _context.Categories.Add(newCategory);
 
             await _context.SaveChangesAsync();
@@ -32,11 +36,25 @@ namespace MyAPI.Core.Services
   
         }
 
+        public async Task <List<CategoryDTO>> GetAllCategories()
+        {
+            //Translate the model to DTO by using Select()
+            return (await _context.Categories.ToListAsync()).Select(i => new CategoryDTO
+            {
+                CategoryId = i.CategoryId,
+                
+                CategoryName = i.CategoryName
+
+            }).ToList();
+
+        }
     }
 
     public interface ICategoryService
     {
         Task CreateCategory(CategoryDTO category);
+
+        Task <List<CategoryDTO>> GetAllCategories();
 
     }
 }
