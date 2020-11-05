@@ -67,6 +67,19 @@ namespace MyAPI.WebApi.Controllers
 
             return Ok(category);
 
-        }  
+        } 
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+           
+            await _service.RemoveCategory(id);
+            return Ok(); 
+
+        }
     }
 }

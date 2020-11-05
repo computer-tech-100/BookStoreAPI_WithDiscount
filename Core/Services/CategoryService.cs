@@ -72,17 +72,28 @@ namespace MyAPI.Core.Services
             return category;
 
         }
+        public async Task RemoveCategory(int? id)
+        {
+            var category = _context.Categories.Single(e => e.CategoryId == id);
+
+            _context.Categories.Remove(category);//Remove category
+
+            await _context.SaveChangesAsync();//Save the changes
+           
+        }
     }
 
     public interface ICategoryService
     {
-        Task CreateCategory(CategoryDTO category);
+        Task CreateCategory(CategoryDTO category);//post
 
-        Task <List<CategoryDTO>> GetAllCategories();
+        Task <List<CategoryDTO>> GetAllCategories();//Get
 
-        Task <CategoryDTO> GetOneCategory(int id);
+        Task <CategoryDTO> GetOneCategory(int id);//Get by id
 
-        Task <CategoryDTO> EditCategory(CategoryDTO category);
+        Task <CategoryDTO> EditCategory(CategoryDTO category);//Put
+
+        Task RemoveCategory(int? id);//Delete
 
     }
 }
