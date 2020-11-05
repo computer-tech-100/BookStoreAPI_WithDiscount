@@ -60,6 +60,18 @@ namespace MyAPI.Core.Services
             }).FirstOrDefault(x => x.CategoryId == id);
 
         }
+
+        public async Task<CategoryDTO> EditCategory(CategoryDTO category)
+        {
+            Category chosenCategory = _context.Categories.Single(x => x.CategoryId == category.CategoryId);
+
+            chosenCategory.CategoryName = category.CategoryName;//edit the name
+
+            await _context.SaveChangesAsync();
+
+            return category;
+
+        }
     }
 
     public interface ICategoryService
@@ -69,6 +81,8 @@ namespace MyAPI.Core.Services
         Task <List<CategoryDTO>> GetAllCategories();
 
         Task <CategoryDTO> GetOneCategory(int id);
+
+        Task <CategoryDTO> EditCategory(CategoryDTO category);
 
     }
 }

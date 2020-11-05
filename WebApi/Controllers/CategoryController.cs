@@ -47,8 +47,26 @@ namespace MyAPI.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDTO>> GetCategoryById(int id)
         {
+            if (id <= 0)
+            {
+                return NotFound();
+            }
+
             return await _service.GetOneCategory(id);
         }
-        
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<CategoryDTO>> UpdateCategory(CategoryDTO category)
+        {
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            await _service.EditCategory(category);
+
+            return Ok(category);
+
+        }  
     }
 }
