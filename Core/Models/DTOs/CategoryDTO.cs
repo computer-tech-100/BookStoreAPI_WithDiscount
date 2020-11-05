@@ -1,7 +1,6 @@
-
-namespace MyAPI.Core.Models.DbEntities
+namespace MyAPI.Core.Models.DTOs
 {
-    public class Category
+    public class CategoryDTO
     {
         public int CategoryId { get; set; }
 

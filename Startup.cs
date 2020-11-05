@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MyAPI.Core.Contexts;
+using MyAPI.Core.Services;
 
 namespace MyAPI
 {
@@ -28,6 +29,9 @@ namespace MyAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //register the services
+            services.AddScoped<ICategoryService, CategoryService>();
 
             //Connection string
             services.AddDbContext<MyAppDbContext>(options =>options.UseSqlite(Configuration.GetConnectionString("MyContext")));
