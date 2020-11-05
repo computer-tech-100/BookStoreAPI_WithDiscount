@@ -43,6 +43,12 @@ namespace MyAPI.WebApi.Controllers
         {
             return await _service.GetAllCategories();
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CategoryDTO>> GetCategoryById(int id)
+        {
+            return await _service.GetOneCategory(id);
+        }
         
     }
 }

@@ -48,6 +48,18 @@ namespace MyAPI.Core.Services
             }).ToList();
 
         }
+
+        public async Task<CategoryDTO> GetOneCategory(int id)
+        {
+            return (await _context.Categories.ToListAsync()).Select(i => new CategoryDTO
+            {
+                CategoryId = i.CategoryId,
+                
+                CategoryName = i.CategoryName
+
+            }).FirstOrDefault(x => x.CategoryId == id);
+
+        }
     }
 
     public interface ICategoryService
@@ -55,6 +67,8 @@ namespace MyAPI.Core.Services
         Task CreateCategory(CategoryDTO category);
 
         Task <List<CategoryDTO>> GetAllCategories();
+
+        Task <CategoryDTO> GetOneCategory(int id);
 
     }
 }
