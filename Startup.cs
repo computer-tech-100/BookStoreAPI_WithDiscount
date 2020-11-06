@@ -33,6 +33,8 @@ namespace MyAPI
             //register the services
             services.AddScoped<ICategoryService, CategoryService>();
 
+            services.AddScoped<IBookService, BookService>();
+
             //Connection string
             services.AddDbContext<MyAppDbContext>(options =>options.UseSqlite(Configuration.GetConnectionString("MyContext")));
         }

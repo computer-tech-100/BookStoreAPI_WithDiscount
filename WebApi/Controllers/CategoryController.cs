@@ -70,7 +70,7 @@ namespace MyAPI.WebApi.Controllers
         } 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> DeleteCategory(int? id)
         {
             if(id == null)
             {
@@ -78,6 +78,7 @@ namespace MyAPI.WebApi.Controllers
             }
            
             await _service.RemoveCategory(id);
+            
             return Ok(); 
 
         }
