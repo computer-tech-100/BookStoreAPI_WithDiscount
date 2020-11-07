@@ -76,7 +76,7 @@ namespace MyAPI.WebApi.Controllers
         {
             if(id == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             await _sevice.RemoveBook(id);

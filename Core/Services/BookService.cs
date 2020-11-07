@@ -128,11 +128,11 @@ namespace MyAPI.Core.Services
         {
             Book bookToBeDeleted = _context.Books.Single(b => b.Id ==id);
 
-            _context.Remove(bookToBeDeleted);//remove book from database
+            _context.Books.Remove(bookToBeDeleted);//remove book from database
 
             await _context.SaveChangesAsync();
+            
         }
-
     }
     public interface IBookService
     {
@@ -147,5 +147,4 @@ namespace MyAPI.Core.Services
         Task RemoveBook(int? id);//Delete
 
     }
-
 }

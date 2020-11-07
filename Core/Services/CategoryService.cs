@@ -92,7 +92,7 @@ namespace MyAPI.Core.Services
         Task <CategoryDTO> GetOneCategory(int id);//Get by id
 
         Task <CategoryDTO> EditCategory(CategoryDTO category);//Put
-
+        
         Task RemoveCategory(int? id);//Delete
 
     }

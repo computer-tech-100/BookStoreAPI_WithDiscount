@@ -25,7 +25,9 @@ namespace MyAPI.UnitTests
             context_Moq.CreateDbSetMock(i => i.Categories, new[]
             {
                 new Category {CategoryId = 1 , CategoryName ="Fiction"},
+
                 new Category {CategoryId = 2 , CategoryName ="Romance"},
+
                 new Category {CategoryId = 3 , CategoryName ="Fantasy"}
 
             });//--> now we have three categories inside our Categories database
@@ -34,6 +36,7 @@ namespace MyAPI.UnitTests
             var my_new_category = new CategoryDTO()
             {
                 CategoryId = 4,
+
                 CategoryName ="Sports"
 
             };
@@ -60,7 +63,9 @@ namespace MyAPI.UnitTests
             context_Moq.CreateDbSetMock(i => i.Categories, new[]
             {
                 new Category {CategoryId = 1 , CategoryName ="Fiction"},
+
                 new Category {CategoryId = 2 , CategoryName ="Romance"},
+
                 new Category {CategoryId = 3 , CategoryName ="Fantasy"}
 
             });//--> now we have three categories inside our Categories database hence it is not null
@@ -68,10 +73,10 @@ namespace MyAPI.UnitTests
             //Act
             var service = new CategoryService(context_Moq.Object);
 
-            var categoriesList = await service.GetAllCategories();
+            await service.GetAllCategories();
             
             //Assert
-            Assert.NotNull(categoriesList);
+            Assert.NotNull(context_Moq.Object.Categories);
         }
 
         //Test if GetOneCategory method returns a category
@@ -84,6 +89,7 @@ namespace MyAPI.UnitTests
             context_Moq.CreateDbSetMock(i => i.Categories, new[]
             {
                 new Category {CategoryId = 1 , CategoryName ="Fiction"},
+
                 new Category {CategoryId = 2 , CategoryName ="Romance"},
 
             });
@@ -92,10 +98,12 @@ namespace MyAPI.UnitTests
             var myService = new CategoryService(context_Moq.Object);
 
             var result =  await myService.GetOneCategory(1);
+
             var result2 =  await myService.GetOneCategory(2);
 
             //Assert
             Assert.Equal("Fiction", result.CategoryName);
+
             Assert.Equal("Romance", result2.CategoryName);
 
         } 
@@ -110,6 +118,7 @@ namespace MyAPI.UnitTests
             context_Moq.CreateDbSetMock(i => i.Categories, new[]
             {
                 new Category {CategoryId = 1 , CategoryName ="Fiction"}, //--> we want to update this
+
                 new Category {CategoryId = 2 , CategoryName ="Romance"},
 
             });
@@ -119,6 +128,7 @@ namespace MyAPI.UnitTests
                 //we want to update the category whose CategoryId is 1
                 //we change the Categoryname from "Fiction" to "Journal"
                 CategoryId = 1,
+                
                 CategoryName = "Journal"
             };
 
@@ -144,9 +154,13 @@ namespace MyAPI.UnitTests
             context_Moq.CreateDbSetMock(i => i.Categories, new[]
             {
                 new Category {CategoryId = 1 , CategoryName ="Fiction"}, 
+
                 new Category {CategoryId = 2 , CategoryName ="Romance"},
+
                 new Category {CategoryId = 3 , CategoryName ="Journal"},//--> we want to remove this
+
                 new Category {CategoryId = 4 , CategoryName ="Sports"},
+
                 new Category {CategoryId = 5 , CategoryName ="Family"},
 
             });
@@ -158,7 +172,7 @@ namespace MyAPI.UnitTests
 
             //Assert
             //When we remove one Category then the size will decrease by one
-            Assert.Equal(4,context_Moq.Object.Categories.Count());
+            Assert.Equal(4, context_Moq.Object.Categories.Count());
 
         }
     }
