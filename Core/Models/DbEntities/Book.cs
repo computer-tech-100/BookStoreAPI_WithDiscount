@@ -9,7 +9,7 @@ namespace MyAPI.Core.Models.DbEntities
         public int Id { get; set; } //primary key
 
         [MinLength(5)]
-        public string Title {get; set; }
+        public string Title { get; set; }
 
         [Required] //Author's name is required
         public string Author { get; set; }

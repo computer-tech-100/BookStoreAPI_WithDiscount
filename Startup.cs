@@ -35,6 +35,8 @@ namespace MyAPI
 
             services.AddScoped<IBookService, BookService>();
 
+            services.AddScoped<IFavoritesService, FavoritesService>();
+
             //Connection string
             services.AddDbContext<MyAppDbContext>(options =>options.UseSqlite(Configuration.GetConnectionString("MyContext")));
         }

@@ -22,22 +22,21 @@ namespace MyAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateOfPublication")
+                    b.Property<string>("DateOfPublication")
                         .HasColumnType("TEXT");
 
                     b.Property<long>("ISBN")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("NameOfAuthor")
-                        .IsRequired()
-                        .HasColumnName("Author")
+                    b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
@@ -63,6 +62,44 @@ namespace MyAPI.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("MyAPI.Core.Models.DbEntities.Favorites", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ShoppingCartId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.ToTable("CartItems");
+                });
+
+            modelBuilder.Entity("MyAPI.Core.Models.DbEntities.ShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("TotalBill")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("MyAPI.Core.Models.DbEntities.Book", b =>
                 {
                     b.HasOne("MyAPI.Core.Models.DbEntities.Category", "Category")
@@ -70,6 +107,19 @@ namespace MyAPI.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MyAPI.Core.Models.DbEntities.Favorites", b =>
+                {
+                    b.HasOne("MyAPI.Core.Models.DbEntities.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyAPI.Core.Models.DbEntities.ShoppingCart", null)
+                        .WithMany("AllBooksToBeBought")
+                        .HasForeignKey("ShoppingCartId");
                 });
 #pragma warning restore 612, 618
         }
