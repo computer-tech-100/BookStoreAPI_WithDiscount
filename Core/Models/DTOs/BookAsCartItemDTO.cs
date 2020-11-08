@@ -3,8 +3,8 @@ using MyAPI.Core.Models.DbEntities;
 
 namespace MyAPI.Core.Models.DTOs
 {
-    //this represent one book inside the cart
-    public class FavoritesDTO
+    //this represents one book inside the cart
+    public class BookAsCartItemDTO
     {
         public int Id { get; set; } //Id is both primary key and foreign key
 
@@ -19,5 +19,4 @@ namespace MyAPI.Core.Models.DTOs
         public decimal SubTotal { get { return Quantity * Price; } }
 
     }
-
 }

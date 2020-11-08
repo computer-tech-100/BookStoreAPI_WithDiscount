@@ -65,7 +65,7 @@ namespace MyAPI.WebApi.Controllers
                 return BadRequest();
             }
 
-           await  _sevice.EditBook(book);
+           await _sevice.EditBook(book);
 
            return Ok(book);
 

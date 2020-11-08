@@ -4,13 +4,15 @@ namespace MyAPI.Core.Models.DbEntities
 {
     public class ShoppingCart
     {
-        public int Id { get; set; }
+        public int Id { get; set; } = 1;
 
-        public List<Favorites> AllBooksToBeBought { get; set; }
+        public List<BookAsCartItem> AllBooksInsideCart { get; set; }
 
-        public decimal TotalBill { get; set; }
+        public decimal Total { get; set; }
 
         public decimal Discount { get; set; }//if total amount is above 100 dollors then we give 10% discount
+
+        public decimal GrandTotal { get; set; }//Grandtotal when total amount is above threshold
 
     }
 }

@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using MyAPI.Core.Models.DbEntities;
 
@@ -15,7 +14,7 @@ namespace MyAPI.Core.Contexts
 
         public virtual DbSet <Category> Categories { get ; set; }
 
-        public virtual DbSet <Favorites> CartItems { get ; set; }
+        public virtual DbSet <BookAsCartItem> BooksAsCartItems { get ; set; }
 
         public virtual DbSet <ShoppingCart> Carts { get ; set; }
         

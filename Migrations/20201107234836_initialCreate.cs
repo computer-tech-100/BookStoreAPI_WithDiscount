@@ -12,8 +12,9 @@ namespace MyAPI.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TotalBill = table.Column<decimal>(nullable: false),
-                    Discount = table.Column<decimal>(nullable: false)
+                    Total = table.Column<decimal>(nullable: false),
+                    Discount = table.Column<decimal>(nullable: false),
+                    GrandTotal = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,7 +59,7 @@ namespace MyAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartItems",
+                name: "BooksAsCartItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -68,15 +69,15 @@ namespace MyAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartItems", x => x.Id);
+                    table.PrimaryKey("PK_BooksAsCartItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CartItems_Books_Id",
+                        name: "FK_BooksAsCartItems_Books_Id",
                         column: x => x.Id,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CartItems_Carts_ShoppingCartId",
+                        name: "FK_BooksAsCartItems_Carts_ShoppingCartId",
                         column: x => x.ShoppingCartId,
                         principalTable: "Carts",
                         principalColumn: "Id",
@@ -89,15 +90,15 @@ namespace MyAPI.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_ShoppingCartId",
-                table: "CartItems",
+                name: "IX_BooksAsCartItems_ShoppingCartId",
+                table: "BooksAsCartItems",
                 column: "ShoppingCartId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CartItems");
+                name: "BooksAsCartItems");
 
             migrationBuilder.DropTable(
                 name: "Books");

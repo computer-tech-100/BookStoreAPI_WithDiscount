@@ -6,19 +6,19 @@ using MyAPI.Core.Services;
 
 namespace MyAPI.WebApi.Controllers
 {
-    [Route("api/[controller]")]//i.e api/Favorites
+    [Route("api/[controller]")]//i.e api/BookAsCartItem
     [ApiController]//Api Controller
-    public class FavoritesController : Controller
+    public class BookAsCartItemController : Controller
     {
-        private readonly IFavoritesService _service;
+        private readonly IBookAsCartItemService _service;
 
-        public FavoritesController (IFavoritesService service)
+        public BookAsCartItemController(IBookAsCartItemService service)
         {
             _service = service;
         }
 
         [HttpPost]
-        public async Task <ActionResult> PostACartItem(FavoritesDTO favoriteBook)
+        public async Task <ActionResult> PostACartItem(BookAsCartItemDTO favoriteBook)
         {
             if(favoriteBook == null)
             {
@@ -37,13 +37,13 @@ namespace MyAPI.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task <ActionResult<List<FavoritesDTO>>> GetListContainingAllCartItems()
+        public async Task <ActionResult<List<BookAsCartItemDTO>>> GetListContainingAllCartItems()
         {
             return await _service.GetAllCartItems();
         }
 
         [HttpGet("{id}")]
-        public async Task <ActionResult<FavoritesDTO>> GetCartItemById(int id)
+        public async Task <ActionResult<BookAsCartItemDTO>> GetCartItemById(int id)
         {
             if(id <= 0)
             {
@@ -55,7 +55,7 @@ namespace MyAPI.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<FavoritesDTO>> UpdateCartItem(FavoritesDTO favoriteBook)
+        public async Task<ActionResult<BookAsCartItemDTO>> UpdateCartItem(BookAsCartItemDTO favoriteBook)
         {
             if(favoriteBook == null)
             {

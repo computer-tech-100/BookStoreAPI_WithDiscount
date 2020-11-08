@@ -6,7 +6,7 @@ using MyAPI.Core.Services;
 
 namespace MyAPI.WebApi.Controllers
 {
-   [Route("api/[controller]")]//i.e api/Category --> Category is name of our controller
+   [Route("api/[controller]")]//i.e api/Category
    [ApiController]//Api Controller
     public class CategoryController : Controller
     {

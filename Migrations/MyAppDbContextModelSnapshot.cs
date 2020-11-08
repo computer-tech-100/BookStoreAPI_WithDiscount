@@ -48,21 +48,7 @@ namespace MyAPI.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("MyAPI.Core.Models.DbEntities.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("MyAPI.Core.Models.DbEntities.Favorites", b =>
+            modelBuilder.Entity("MyAPI.Core.Models.DbEntities.BookAsCartItem", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("INTEGER");
@@ -80,7 +66,21 @@ namespace MyAPI.Migrations
 
                     b.HasIndex("ShoppingCartId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("BooksAsCartItems");
+                });
+
+            modelBuilder.Entity("MyAPI.Core.Models.DbEntities.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("MyAPI.Core.Models.DbEntities.ShoppingCart", b =>
@@ -92,7 +92,10 @@ namespace MyAPI.Migrations
                     b.Property<decimal>("Discount")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("TotalBill")
+                    b.Property<decimal>("GrandTotal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Total")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -109,7 +112,7 @@ namespace MyAPI.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyAPI.Core.Models.DbEntities.Favorites", b =>
+            modelBuilder.Entity("MyAPI.Core.Models.DbEntities.BookAsCartItem", b =>
                 {
                     b.HasOne("MyAPI.Core.Models.DbEntities.Book", "Book")
                         .WithMany()
@@ -118,7 +121,7 @@ namespace MyAPI.Migrations
                         .IsRequired();
 
                     b.HasOne("MyAPI.Core.Models.DbEntities.ShoppingCart", null)
-                        .WithMany("AllBooksToBeBought")
+                        .WithMany("AllBooksInsideCart")
                         .HasForeignKey("ShoppingCartId");
                 });
 #pragma warning restore 612, 618
