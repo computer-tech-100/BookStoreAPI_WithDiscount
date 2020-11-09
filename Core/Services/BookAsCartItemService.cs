@@ -94,8 +94,7 @@ namespace MyAPI.Core.Services
             _context.BooksAsCartItems.Remove(cartItemToBeDeleted);
 
             await _context.SaveChangesAsync();
-        }
-            
+        }      
     }
 
     public interface IBookAsCartItemService

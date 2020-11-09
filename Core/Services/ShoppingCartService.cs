@@ -54,9 +54,10 @@ namespace MyAPI.Core.Services
                 shoppingCart.GrandTotal = shoppingCart.Total;
 
             }
-
+            
             return shoppingCart;
         }
+        
     }
 
     public interface IShoppingCartService
