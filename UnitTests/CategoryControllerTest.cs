@@ -10,6 +10,7 @@ using System.Linq;
 
 namespace MyAPI.UnitTests
 {
+    //Unit tests for CategoryController
     public class CategoryControllerTest
     {
         //create dummy data

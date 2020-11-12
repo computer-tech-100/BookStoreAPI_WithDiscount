@@ -11,6 +11,7 @@ using MyAPI.Core.Models.DbEntities;
 
 namespace MyAPI.UnitTests
 {
+    //Unit tests for BookController
     public class BookControllerTest
     {
         //create dummy data

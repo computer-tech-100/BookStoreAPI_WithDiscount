@@ -9,6 +9,7 @@ using MyAPI.WebApi.Controllers;
 
 namespace MyAPI.UnitTests
 {
+    //Unit tests for ShoppingCartController
     public class ShoppingCartControllerTest
     {
         //create dummy data

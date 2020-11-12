@@ -10,6 +10,7 @@ using System.Linq;
 
 namespace MyAPI.UnitTests
 {
+    //Unit tests for CategoryService
     public class CategoryServiceTest
     {
         //Create dummy options that is type of our context i.e MyAppDbContext

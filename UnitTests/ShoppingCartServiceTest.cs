@@ -9,6 +9,7 @@ using System.Collections.Generic;
 
 namespace MyAPI.UnitTests
 {
+    //Unit tests for ShoppingCartService
     public class ShoppingCartServiceTest
     {
         //dummy options
