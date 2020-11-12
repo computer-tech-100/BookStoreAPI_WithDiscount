@@ -45,18 +45,18 @@ namespace MyAPI.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CategoryDTO>> GetCategoryById(int id)
+        public ActionResult<CategoryDTO> GetCategoryById(int id)
         {
             if (id <= 0)
             {
                 return NotFound();
             }
 
-            return await _service.GetOneCategory(id);
+            return Ok( _service.GetOneCategory(id));
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<CategoryDTO>> UpdateCategory(CategoryDTO category)
+        public async Task <ActionResult> UpdateCategory(CategoryDTO category)
         {
             if (category == null)
             {

@@ -58,9 +58,9 @@ namespace MyAPI.Core.Services
             }).ToList();
         }
 
-        public async Task<BookAsCartItemDTO> GetOneCartItem(int id)
+        public BookAsCartItemDTO GetOneCartItem(int id)
         {
-            return (await _context.BooksAsCartItems.Include(b => b.Book).Include(x => x.Book.Category).ToListAsync()).Select(y => new BookAsCartItemDTO
+            return _context.BooksAsCartItems.Include(b => b.Book).Include(x => x.Book.Category).ToList().Select(y => new BookAsCartItemDTO
             {
                 Id = y.Id,
 
@@ -73,7 +73,7 @@ namespace MyAPI.Core.Services
             }).FirstOrDefault(i => i.Id == id);
         }
 
-        public async Task <BookAsCartItemDTO> EditCartItem(BookAsCartItemDTO favoriteBook)
+        public async Task EditCartItem(BookAsCartItemDTO favoriteBook)
         {
             var favoriteBookToBeUpdated = _context.BooksAsCartItems.Include(b => b.Book).Include(x => x.Book.Category).Single(i =>i.Id == favoriteBook.Id);
 
@@ -82,9 +82,7 @@ namespace MyAPI.Core.Services
             favoriteBook.Book = favoriteBookToBeUpdated.Book;
 
             await _context.SaveChangesAsync();
-
-            return favoriteBook;
-
+            
         }
 
         public async Task RemoveCartItem(int? id)
@@ -103,9 +101,9 @@ namespace MyAPI.Core.Services
 
         Task<List<BookAsCartItemDTO>> GetAllCartItems();//Get
 
-        Task<BookAsCartItemDTO> GetOneCartItem(int id);//Get by Id
+        BookAsCartItemDTO GetOneCartItem(int id);//Get by Id
 
-        Task <BookAsCartItemDTO> EditCartItem(BookAsCartItemDTO favoriteBook);//Put
+        Task EditCartItem(BookAsCartItemDTO favoriteBook);//Put
 
         Task RemoveCartItem(int? id);//Delete
         

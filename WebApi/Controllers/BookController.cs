@@ -39,21 +39,21 @@ namespace MyAPI.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task <ActionResult<List<BookDTO>>> GetListContaingAllBooks()
+        public async Task <ActionResult<List<BookDTO>>> GetListContainingAllBooks()
         {
             return await _sevice.GetAllBooks();
 
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<BookDTO>> GetBookById(int id)
+        public ActionResult<BookDTO> GetBookById(int id)
         {
             if (id <= 0)
             {
                 return NotFound();
             }
 
-            return await _sevice.GetOneBook(id);
+            return Ok(_sevice.GetOneBook(id));
 
         }
 
@@ -62,7 +62,7 @@ namespace MyAPI.WebApi.Controllers
         {
             if(book == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
            await _sevice.EditBook(book);

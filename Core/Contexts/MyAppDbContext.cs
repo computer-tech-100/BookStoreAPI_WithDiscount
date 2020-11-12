@@ -19,5 +19,4 @@ namespace MyAPI.Core.Contexts
         public virtual DbSet <ShoppingCart> Carts { get ; set; }
         
     }
-
 }

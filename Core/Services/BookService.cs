@@ -75,9 +75,9 @@ namespace MyAPI.Core.Services
 
         }
 
-        public async Task<BookDTO> GetOneBook(int id)
+        public BookDTO GetOneBook(int id)
         {
-            return (await _context.Books.Include(x => x.Category).ToListAsync()).Select(i => new BookDTO
+            return _context.Books.Include(x => x.Category).ToList().Select(i => new BookDTO
             {
                 Id = i.Id,
 
@@ -99,7 +99,7 @@ namespace MyAPI.Core.Services
 
         }
 
-        public async Task <BookDTO> EditBook(BookDTO book)
+        public async Task EditBook(BookDTO book)
         {
             Book chosenBook = _context.Books.Include(c => c.Category).Single(b => b.Id == book.Id);
                
@@ -120,8 +120,6 @@ namespace MyAPI.Core.Services
 
             await _context.SaveChangesAsync();
 
-            return book;
-
         }
 
         public async Task RemoveBook(int? id)
@@ -140,9 +138,9 @@ namespace MyAPI.Core.Services
 
         Task <List<BookDTO>> GetAllBooks();//Get
 
-        Task<BookDTO> GetOneBook(int id);//Get by id
+        BookDTO GetOneBook(int id);//Get by id
 
-        Task<BookDTO> EditBook(BookDTO book);//Put
+        Task EditBook(BookDTO book);//Put
 
         Task RemoveBook(int? id);//Delete
 

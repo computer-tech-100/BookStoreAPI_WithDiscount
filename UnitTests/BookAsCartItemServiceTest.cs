@@ -73,7 +73,7 @@ namespace MyAPI.UnitTests
         }
 
         [Fact]
-        public async Task GetOneCartItem_WhenCalled_ReturnsOneCartItem()
+        public void GetOneCartItem_WhenCalled_ReturnsOneCartItem()
         {
             //Arrange
             var context_Moq = new DbContextMock<MyAppDbContext>(dummyOptions);
@@ -93,9 +93,9 @@ namespace MyAPI.UnitTests
 
             var chosen_Item2 = context_Moq.Object.BooksAsCartItems.FirstOrDefault(i => i.Id == 2);
 
-            await service.GetOneCartItem(1);
+            service.GetOneCartItem(1);
 
-            await service.GetOneCartItem(2);
+            service.GetOneCartItem(2);
 
             //Assert
             Assert.Equal(10, chosen_Item1.Price);

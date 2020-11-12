@@ -49,9 +49,9 @@ namespace MyAPI.Core.Services
 
         }
 
-        public async Task<CategoryDTO> GetOneCategory(int id)
+        public CategoryDTO GetOneCategory(int id)
         {
-            return (await _context.Categories.ToListAsync()).Select(i => new CategoryDTO
+            return  _context.Categories.Select(i => new CategoryDTO
             {
                 CategoryId = i.CategoryId,
                 
@@ -61,15 +61,13 @@ namespace MyAPI.Core.Services
 
         }
 
-        public async Task<CategoryDTO> EditCategory(CategoryDTO category)
+        public async Task EditCategory(CategoryDTO category)
         {
             Category chosenCategory = _context.Categories.Single(x => x.CategoryId == category.CategoryId);
 
             chosenCategory.CategoryName = category.CategoryName;//edit the name
 
             await _context.SaveChangesAsync();
-
-            return category;
 
         }
         public async Task RemoveCategory(int? id)
@@ -89,9 +87,9 @@ namespace MyAPI.Core.Services
 
         Task <List<CategoryDTO>> GetAllCategories();//Get
 
-        Task <CategoryDTO> GetOneCategory(int id);//Get by id
+        CategoryDTO GetOneCategory(int id);//Get by id
 
-        Task <CategoryDTO> EditCategory(CategoryDTO category);//Put
+        Task EditCategory(CategoryDTO category);//Put
         
         Task RemoveCategory(int? id);//Delete
 

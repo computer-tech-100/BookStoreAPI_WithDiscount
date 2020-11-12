@@ -43,19 +43,19 @@ namespace MyAPI.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task <ActionResult<BookAsCartItemDTO>> GetCartItemById(int id)
+        public ActionResult<BookAsCartItemDTO> GetCartItemById(int id)
         {
             if(id <= 0)
             {
                 return NotFound();
             }
 
-            return await _service.GetOneCartItem(id);
+            return Ok(_service.GetOneCartItem(id));
 
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<BookAsCartItemDTO>> UpdateCartItem(BookAsCartItemDTO favoriteBook)
+        public async Task<ActionResult> UpdateCartItem(BookAsCartItemDTO favoriteBook)
         {
             if(favoriteBook == null)
             {

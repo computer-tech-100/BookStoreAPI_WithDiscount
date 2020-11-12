@@ -81,7 +81,7 @@ namespace MyAPI.UnitTests
         }
 
         [Fact]
-        public async Task GetOneBook_WhenCalled_ReturnsOneBook()
+        public void GetOneBook_WhenCalled_ReturnsOneBook()
         {
             //Arrange
             var moq = new DbContextMock<MyAppDbContext>(dummyOptions);
@@ -97,9 +97,9 @@ namespace MyAPI.UnitTests
             //Act
             var service = new BookService(moq.Object);
 
-            var book1 = await service.GetOneBook(1);
+            var book1 = service.GetOneBook(1);
 
-            var book2 = await service.GetOneBook(2);
+            var book2 = service.GetOneBook(2);
 
             //Assert
             Assert.Equal("James X", book1.Author);

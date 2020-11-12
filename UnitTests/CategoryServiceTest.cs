@@ -81,7 +81,7 @@ namespace MyAPI.UnitTests
 
         //Test if GetOneCategory method returns a category
         [Fact]
-        public async Task GetOneCategory_WhenCalled_ReturnsOneCategory()
+        public void GetOneCategory_WhenCalled_ReturnsOneCategory()
         {
             //Arrange
             var context_Moq = new DbContextMock<MyAppDbContext>(dummyOptions);
@@ -97,9 +97,9 @@ namespace MyAPI.UnitTests
             //Act
             var myService = new CategoryService(context_Moq.Object);
 
-            var result =  await myService.GetOneCategory(1);
+            var result =   myService.GetOneCategory(1);
 
-            var result2 =  await myService.GetOneCategory(2);
+            var result2 =  myService.GetOneCategory(2);
 
             //Assert
             Assert.Equal("Fiction", result.CategoryName);
