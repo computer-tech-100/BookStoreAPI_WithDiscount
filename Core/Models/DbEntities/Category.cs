@@ -1,6 +1,3 @@
-
-using System.ComponentModel.DataAnnotations;
-
 namespace MyAPI.Core.Models.DbEntities
 {
     public class Category

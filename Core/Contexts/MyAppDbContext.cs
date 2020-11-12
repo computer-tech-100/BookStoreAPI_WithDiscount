@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using MyAPI.Core.Models.DbEntities;
 
@@ -14,7 +13,10 @@ namespace MyAPI.Core.Contexts
         public virtual DbSet <Book> Books { get; set; } //we make this virtual for purpose of unit testing with Moq
 
         public virtual DbSet <Category> Categories { get ; set; }
+
+        public virtual DbSet <BookAsCartItem> BooksAsCartItems { get ; set; }
+
+        public virtual DbSet <ShoppingCart> Carts { get ; set; }
         
     }
-
 }
